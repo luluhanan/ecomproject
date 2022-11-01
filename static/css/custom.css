@@ -1,0 +1,86 @@
+
+.my_navbar {
+background-color:teal;
+}
+.my_footer{
+    background-color:white;
+    height:100px;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      position:fixed;
+}
+.my_footer p{
+    padding-top:40px;
+}
+.search{
+float:right;
+}
+
+/*category*/
+.row{
+ padding-bottom:20px;
+}
+.my_row_class{
+  padding-top:15px;
+}
+.my_row_class .mx_auto{
+ color:black;
+ font-size:15px;
+}
+
+.my_image{
+width:150px;
+height:200px;
+}
+.my_title{
+font-size:16px;
+text-transform:uppercase;
+letter-spacing:.2em;
+}
+.card-body h3{
+font-size:14px;
+text-transform:uppercase;
+letter-spacing:.2em;
+}
+.my_bottom_margin{
+margin-bottom:10px;
+}
+.my_product_row_class{
+padding-top:15px;
+padding-bottom:20px;
+}
+.my_product_row_class .mx_auto{
+
+  color:#000;
+}
+.my_product_title{
+font-size:16px;
+text-transform:uppercase;
+letter-spacing:.2em;
+padding-top:15px;
+padding-bottom:20px;
+}
+.my_product-text{
+padding-right:20px;
+}
+h4{
+font-family: "Lucida Console", "Courier New", monospace;
+}
+/***cart***/
+.my_table{
+min-width:400px;
+font-size:14px;
+}
+.my_thead{
+font-weight:normal;
+background-color:grey;
+text-transform:uppercase;
+letter-spacing:.2em;
+}
+.logoimg{
+padding-left:30px;
+}
+.my_payment{
+text-align:left;
+}

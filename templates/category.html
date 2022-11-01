@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{%  load static %}
+
+
+{% block metadescription %}
+     {% if category %}
+            {{ category.name}}
+     {% else %}
+           Welcome to Blue collections .....
+       {% endif %}
+{% endblock %}
+
+{% block title %}
+     {% if category %}
+            {{ category.name}}
+     {% else %}
+        Blue Collection
+       {% endif %}
+{% endblock %}
+
+
+{% block content %}
+
+<!--       {% if category %}-->
+<!--            <div class="container">-->
+<!--                <div class="row my_row_class">-->
+<!--                    <div class="mx_auto">-->
+
+<!--                    <p>-->
+<!--                        <a href="{% url 'shop:allProdCat' %}">Collections</a>-->
+<!--                    </p>-->
+<!--                     </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--       {% endif %}-->
+    <div class="mx_auto">
+<!--          {% if category %}-->
+<!--            <img class="my_image" src="{{category.image.url}}" alt="catimage">-->
+<!--    </div>-->
+<!--    <div>-->
+<!--        <h1 class="text-center my_title">{{category.name}}</h1>-->
+<!--    </div>-->
+<!--    {% else %}-->
+    <div>
+         <img  src="{% static 'img/banner.png' %}" alt="bannerimg" height="600px" width="1350px">
+    </div>
+
+<div>
+    <h3 class="text-center my_title">Fashion</h3>
+    <p class="text-justify">
+        Fashion is a form of self-expression and autonomy at a particular period and place and in a specific context, of clothing, footwear, lifestyle, accessories, makeup, hairstyle, and body posture. The term implies a look defined by the fashion industry as that which is trending.
+    </p>
+</div>
+<!--  {% endif %}-->
+<div class="container">
+    <div class="row mx_auto">
+        {% for products in products.object_list %}
+        <div class="my_bottom_margin col-sm-12 col-md-4 col-lg-4">
+            <div class="card text-center" style="min-width:18rem;">
+                <a href="{{products.get_url}}"><img class="card-img-top my_image" src="{{products.image.url}}"></a>
+            <div class="card-body">
+                <h3>{{products.name}}</h3>
+                <p>{{products.price}}</p>
+            </div>
+            </div>
+        </div>
+         {% endfor %}
+    </div>
+    <div  class="mx_auto">
+        {% if products.paginator.num_pages > 1 %}
+        <hr>
+        <div class="text-center">
+            {% for pg in products.paginator.page_range %}
+            <a href="?page={{pg}}" class="btn btn-light btn-sm {%if products.number == pg %} active {% endif %}">{{pg}}</a>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+    <br>
+</div>
+</div>
+
+
+{% endblock %}

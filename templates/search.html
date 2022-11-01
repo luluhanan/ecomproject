@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{%  load static %}
+
+
+{% block metadescription %}
+
+           Welcome to Blue collections .....
+
+{% endblock %}
+
+
+{% block title %}
+        {{ query}}
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+ <div class="row mx_auto">
+        {% for products in products %}
+        <div class="my_bottom_margin col-sm-12 col-md-4 col-lg-4">
+            <div class="card text-center" style="min-width:18rem;">
+                <a href="{{products.get_url}}"><img class="card-img-top my_image" src="{{products.image.url}}"></a>
+            <div class="card-body">
+                <h3>{{products.name}}</h3>
+                <p>{{products.price}}</p>
+            </div>
+            </div>
+        </div>
+         {% empty %}
+            <div class="row mx_auto">
+                <h4 class="text-center">Oops...your item '{{query}}' not found..</h4>
+            </div>
+         {% endfor %}
+    </div>
+</div>
+{% endblock %}

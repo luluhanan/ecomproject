@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+{%  load static %}
+
+
+{% block metadescription %}
+
+         blue collection  cart
+
+{% endblock %}
+
+{% block title %}
+
+           Cart- Blue collections
+
+
+{% endblock %}
+
+
+{% block content %}
+{% if not cart_items %}
+<div>
+    <div class="text-center">
+        <br>
+        <h3 class="text-center my_title">Your bag feels so light..<a href="{% url 'shop:allProdCat' %}">Shop now!!</a></h3>
+    </div>
+</div>
+{% else %}
+<div>
+    <div class="text-center">
+        <br>
+        <h3 class="text-center my_title">Shopping Bag</h3>
+    </div>
+    <div class="row mx_auto">
+        <div class="col-12 col-sm-12-col-md-12 col-lg-6">
+            <table class="table my_table">
+                <thead class="my_thead">
+                <tr>
+                    <th colspan="5">items</th>
+
+                </tr>
+
+                </thead>
+                <tbody>
+                {% for cart_item in cart_items %}
+                <tr>
+                    <td>
+                        <a href=""><img src="{{cart_item.product.image.url}}" alt="cartitemimg" width="150px" height="180px" ></a>
+                    </td>
+                    <td class="text-left">
+                        <b>{{cart_item.product.name}}</b>
+                        <br>
+                        product_code:{{cart_item.product.id}}
+                        <br>
+                        <b>Rs.{{cart_item.product.price}}</b>
+                        <br>
+                        Size: L
+                        <br>
+                        Qty:{{cart_item.quantity}}
+                    </td>
+                    <td>
+                       Total: Rs.{{cart_item.sub_total}}
+                    </td>
+                    {% if cart_item.quantity < cart_item.product.stock %}
+                    <td>
+                        <a href="{% url 'cart:add_cart'  cart_item.product.id %}"><i class="fa-solid fa-plus"></i></a>&nbsp;
+                        <a href="{% url 'cart:cart_remove'  cart_item.product.id %}"><i class="fa-solid fa-minus"></i></a>&nbsp;
+                        <a href="{% url 'cart:itemDelete'  cart_item.product.id %}"><i class="fa-solid fa-trash"></i></a>
+                    </td>
+                    {% else %}
+                    <td>
+                          <a href="{% url 'cart:cart_remove'  cart_item.product.id %}"><i class="fa-solid fa-minus"></i></a>&nbsp;
+                        <a href="{% url 'cart:itemDelete'  cart_item.product.id %}"><i class="fa-solid fa-trash"></i></a>
+                    </td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+                </tbody>
+
+            </table>
+        </div>
+        <div class="col-12 col-sm-12-col-md-12 col-lg-6 text-center">
+               <table class="table my_table">
+                     <thead class="my_thead">
+                <tr>
+                    <th >Checkout</th>
+
+                </tr>
+
+                </thead>
+                   <tbody>
+                   <tr>
+                       <td>Thankyou for shopping with us </td>
+                   </tr>
+                   <tr>
+                       <td>
+                           <strong>Total amount: {{total}}</strong>
+                       </td>
+                   </tr>
+                   </tbody>
+               </table>
+              <div>
+                  <div data-role="page" class="my_payment">
+  <div data-role="header" >
+  <h6>Payment options</h6>
+  </div>
+
+  <div data-role="main" class="ui-content">
+    <form method="post" action="/action_page_post.php">
+      <fieldset data-role="controlgroup">
+<!--      <legend>Choose your gender:</legend>-->
+
+        <input type="radio" name="gender" id="phonepe" value="phonepe" checked>
+           <label for="phonepe">Phonepe</label><br>
+
+        <input type="radio" name="gender" id="upi" value="upi">
+           <label for="upi">UPI id</label><br>
+        <input type="radio" name="gender" id="cod" value="cod">
+          <label for="cod">Cash on Delivery</label>
+
+      </fieldset>
+    </form>
+        </div>
+                  </div>
+            <div>
+                <a href="{% url 'shop:allProdCat' %}" class="btn btn-success ">Pay now</a>
+            </div>
+             <br>
+                  <hr class="solid">
+            <div class="mx_auto">
+                <a href="{% url 'shop:allProdCat' %}" class="btn  btn-warning " >Continue shopping</a>
+            </div>
+
+
+
+
+
+    </div>
+
+</div>
+{% endif %}
+{% endblock %}
